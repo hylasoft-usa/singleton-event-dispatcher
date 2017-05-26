@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <script src="../EventManager.js"></script>
+    <title>Event Manager example</title>
+  </head>
+  <body>
+    <div class="dispatcher">
+      <span class="big"> Dispatcher </span><br><br>
+      <label for="event" class="input-label">Event</label><input class="input-2 dispatchActionEvent" id="event" type="text" value="EVENT_1"/>
+      <label for="payload" class="input-label">Payload</label><input class="input-2 dispatchActionPayload" id="payload" type="text" value="Ciao!"/>
+      <div class="button dispatchActionButton"> Dispatch event </div>
+    </div>
+    <div class="listener">
+      <div class="big">Listener 1</div><br>
+      <div class="listening-at-listener1"></div><br>
+      <label for="event-to-listen1" class="input-label">Event to listen</label><input class="input-2" id="event-to-listen1" type="text" /> <div class="button button-listen1"> Subscribe </div>
+      <div class="body-listener body-listener-1"></div>
+    </div>
+    <div class="listener">
+      <div class="big">Listener 2</div><br>
+      <div class="listening-at-listener2"></div><br>
+      <label for="event-to-listen2" class="input-label">Event to listen</label><input class="input-2" id="event-to-listen2" type="text" /> <div class="button button-listen2"> Subscribe </div>
+      <div class="body-listener body-listener-2"></div>
+    </div>
+  </body>
+</html>
+
+<script>
+  $( document ).ready(function() {
+    // Initialize Event Manager as singleton
+    new EventManager(true)
+
+    // dispatcher
+    // This component does not know if other components already instantiated the event manager
+    // EventManager(true) creates a singleton that is attached to window.eventManager
+    new EventManager(true) // This component does not know if other components already instantiated the event manager
+    $(".dispatchActionButton").on("click", () => window.eventManager.dispatch($(".dispatchActionEvent").val(), $(".dispatchActionPayload").val()))
+
+    // listener 1
+    // This component does not know if other components already instantiated the event manager
+    // EventManager(true) creates a singleton that is attached to window.eventManager
+    new EventManager(true)
+    var currentEventToListen1 = "EVENT_1"
+    $(".listening-at-listener1").html("Listening at " + currentEventToListen1)
+    $("#event-to-listen1").val(currentEventToListen1)
+    $(".button-listen1").on("click", () => setEventToListen1($("#event-to-listen1").val()))
+    var listener1EventHandler = function(payload){
+      $(".body-listener-1").prepend(payload + "<br>")
+    }
+    window.eventManager.subscribe("EVENT_1", listener1EventHandler)
+    var setEventToListen1 = function(eventToListen){
+      window.eventManager.unsubscribe(currentEventToListen1, listener1EventHandler)
+      window.eventManager.subscribe(eventToListen, listener1EventHandler)
+      currentEventToListen1 = eventToListen
+      $(".listening-at-listener1").html("Listening at " + eventToListen)
+    }
+
+    // listener 2
+    // This component does not know if other components already instantiated the event manager
+    // EventManager(true) creates a singleton that is attached to window.eventManager
+    new EventManager(true)
+    var currentEventToListen2 = "EVENT_2"
+    $(".listening-at-listener2").html("Listening at " + currentEventToListen2)
+    $("#event-to-listen2").val(currentEventToListen2)
+    $(".button-listen2").on("click", () => setEventToListen2($("#event-to-listen2").val()))
+    var listener2EventHandler = function(payload){
+      $(".body-listener-2").prepend(payload + "<br>")
+    }
+    window.eventManager.subscribe("EVENT_2", listener2EventHandler)
+    var setEventToListen2 = function(eventToListen){
+      window.eventManager.unsubscribe(currentEventToListen2, listener2EventHandler)
+      window.eventManager.subscribe(eventToListen, listener2EventHandler)
+      currentEventToListen2 = eventToListen
+      $(".listening-at-listener2").html("Listening at " + eventToListen)
+    }
+  });
+</script>

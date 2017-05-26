@@ -1,0 +1,82 @@
+body{
+  background-color: rgb(39, 174, 96);
+  margin: 0;
+  font-family: 'VT323', monospace;
+}
+
+.dispatcher{
+  background-color: rgb(46, 204, 113);
+  padding: 20px;
+  color: white;
+}
+
+.big{
+  font-size: 24pt;
+}
+
+input:focus{
+    outline: none;
+}
+
+.input-1{
+  border: 0;
+  background-color: rgb(39, 174, 96);
+  color: white;
+  font-family: 'VT323', monospace;
+  padding: 10px;
+  font-size: 16pt;
+}
+
+.input-2{
+  border: 0;
+  background-color: #209250;
+  color: white;
+  font-family: 'VT323', monospace;
+  padding: 10px;
+  font-size: 16pt;
+}
+
+
+.input-label{
+  background-color: #25A75C;
+  font-size: 16pt;
+  padding: 10px;
+  color: rgb(236, 240, 241)
+}
+
+.input-label-2{
+  background-color: #209250;
+  font-size: 16pt;
+  padding: 10px;
+  color: rgb(236, 240, 241)
+}
+
+.button{
+  display: inline-block;
+  background-color: rgb(41, 128, 185);
+  font-size: 16pt;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button:hover{
+  transition: 0.2s;
+  background-color: rgb(52, 152, 219);
+}
+
+.listener{
+  padding: 20px;
+  float: left;
+  width: calc(50% - 40px);
+  color: white;
+}
+
+.body-listener{
+  padding-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .listener{
+    width: 100%;
+  }
+}
