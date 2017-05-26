@@ -2,6 +2,9 @@
 
 This JavaScript event dispatcher creates a Singleton instance and attaches it globally to the page. This event dispatcher is useful when multiple independent component within a page must communicate among them.
 
+[See Demo](https://hylasoft-usa.github.io/singleton-event-dispatcher/example/)
+
+
 ![alt text](https://raw.githubusercontent.com/hylasoft-usa/singleton-event-dispatcher/master/example/screenshot.JPG)
 
 ## Usage
