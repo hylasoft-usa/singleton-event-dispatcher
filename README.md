@@ -11,6 +11,12 @@ This JavaScript event dispatcher creates a Singleton instance and attaches it gl
 
 ### Instantiation
 
+Include the following script within your page:
+
+```
+<script src="https://hylasoft-usa.github.io/singleton-event-dispatcher/EventManager.js" type="text/javascript"></script>
+```
+
 Event Manager can be created multiple times by independent component within a page. Passing a true argument, Event Manager constructor will check whether an EventManager instance has already been created keeping the Singleton pattern.
 
 ```
