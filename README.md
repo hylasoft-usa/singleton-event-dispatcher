@@ -60,3 +60,11 @@ This command is used for debugging purposes, it shows all the callbacks that are
 ```
 window.eventManager.showAllSubsriptions()
 ```
+### HylaEventManager (it does not use ECMA6 syntax)
+
+If you need to use the event manager without the ECMA6 syntax for classes, you can reference the HylaEventManager.js script. Example of usage:
+
+```
+var eventManager = window.HylaEventManager;
+eventManager.subscribe("EventName", callback);
+```
